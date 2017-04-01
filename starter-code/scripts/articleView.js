@@ -60,6 +60,8 @@ articleView.handleMainNav = function () {
       2. Fade in the single .tab-content section that is
         associated with the .tab element's data-content attribute.
     */
+    $('.tab-content').hide();
+    $('#' + $(this).attr('data-content')).fadeIn('slow');
   });
   $('.main-nav .tab:first').click();
 };
@@ -73,11 +75,19 @@ articleView.setTeasers = function() {
     2. Reveal everything in that particular article now.
     3. Hide that read-on link!
 
+
     // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
   */
+  $('article').on('click', '.read-on', function(){
+    event.preventDefault();
+    $(this).parent().find('*').fadeIn('fast');
+    $(this).hide();
+  });
 };
 
 // TODO: Invoke all of the above functions (I mean, methods!):
 articleView.populateFilters();
 articleView.handleAuthorFilter();
 articleView.handleCategoryFilter();
+articleView.handleMainNav();
+articleView.setTeasers();
