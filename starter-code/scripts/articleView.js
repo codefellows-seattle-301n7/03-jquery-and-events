@@ -25,9 +25,9 @@ articleView.handleAuthorFilter = function() {
             those articles that match the value, and then fade them in.
         */
       $('article').hide();
-      $("article[data-category=this.val]").fadeIn('slow');
-      debugger;
-    } else {
+      // debugger;
+      $('article[data-author="' + $(this).val() + '"]').fadeIn('slow');
+      } else {
     /* Otherwise, we should:
         1. Show all the articles except the template */
         $("article").not(".template").fadeIn('slow');
@@ -43,9 +43,8 @@ articleView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function() {
     if ($(this).val()) {
       $('article').hide();
-      $('article[data-category="' + this.val + '"]').fadeIn('slow');
-      debugger;
-    } else {
+      $('article[data-category="' + $(this).val() + '"]').fadeIn('slow');
+      } else {
     /* Otherwise, we should:
         1. Show all the articles except the template */
         $("article").not(".template").fadeIn('slow');
@@ -80,3 +79,5 @@ articleView.setTeasers = function() {
 
 // TODO: Invoke all of the above functions (I mean, methods!):
 articleView.populateFilters();
+articleView.handleAuthorFilter();
+articleView.handleCategoryFilter();
