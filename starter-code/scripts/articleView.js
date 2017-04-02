@@ -1,7 +1,7 @@
 //  REVIEW: Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
 var articleView = {};
 
-articleView.populateFilters = function() {
+articleView.populateFilters = function() {alert('populateFilters');
   $('article').not('.template').each(function() {
     var authorName, category, optionTag;
     authorName = $(this).find('address a').text();
@@ -12,12 +12,16 @@ articleView.populateFilters = function() {
     if ($('#category-filter option[value="' + category + '"]').length === 0) {
       $('#category-filter').append(optionTag);
     }
+
   });
 };
 
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
+      $('article').hide();
+      $('article[data-author="' + $(this).val() + '"]').fadeIn('slow');
+
       /* TODO: If the select box changes to an option that has a value, we should:
           1. Hide all of the articles
           2. Fade in only the articles that match based on on the author
@@ -33,10 +37,13 @@ articleView.handleAuthorFilter = function() {
 };
 
 articleView.handleCategoryFilter = function() {
+  $('#category-filter').on('change', function() {
+
   /* TODO: Just like we do for #author-filter above, we should also handle
   change events on the #category-filter element. Be sure to reset the
   #author-filter while you're at it! */
-};
+  });
+}
 
 articleView.handleMainNav = function () {
   $('.main-nav').on('click', '.tab', function() {
@@ -63,3 +70,5 @@ articleView.setTeasers = function() {
 };
 
 // TODO: Invoke all of the above functions (I mean, methods!):
+articleView.populateFilters();
+articleView.handleAuthorFilter();
