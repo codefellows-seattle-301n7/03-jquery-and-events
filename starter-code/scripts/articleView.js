@@ -80,8 +80,15 @@ articleView.setTeasers = function() {
   */
   $('article').on('click', '.read-on', function(){
     event.preventDefault();
-    $(this).parent().find('*').fadeIn('fast');
-    $(this).hide();
+    // $(this).parent().find('*').fadeIn('fast');
+    $(this).siblings('section.article-body').children().toggle();
+    // $(this).hide();
+    if ($(this).html() === 'Read on →') {
+      $(this).html('Read less &larr;');
+    }
+    else {
+      $(this).html('Read on →');
+    }
   });
 };
 
