@@ -88,10 +88,11 @@ articleView.setTeasers = function() {
   3. Hide that read-on link!
   // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
   */
-  $('article').on('click', 'a', function(e){
+  $('a').on('click', function(e){
     e.preventDefault();
-    $('.article-body p').css('display', 'block');
-    $('.read-on').hide();
+    $(this).prev().children().css('display', 'block');
+    // $('.article-body p').css('display', 'block');
+    $(this).hide();
   });
 };
 // TODO: Invoke all of the above functions (I mean, methods!):
